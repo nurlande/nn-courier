@@ -4,7 +4,7 @@ function Header() {
   return (
     <div>
     <nav className="navbar navbar-light bg-dark">
-    <div className="container"><a class="navbar-brand" href="/">
+    <div className="container"><a className="navbar-brand" href="/">
     <img src="" width="30" height="30" 
     className="d-inline-block align-top" alt="" />
     Bootstrap </a>

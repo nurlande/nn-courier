@@ -1,36 +1,60 @@
 import React from 'react';
+import firebase from './config/config.js';
 
-function Order() {
-  return (
+class Order extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+     title: '',
+     price: ''
+    };
+  }
+  updateInput = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+  addPost = e => {
+    e.preventDefault();
+    const db = firebase.firestore();
+    db.settings({
+      timestampsInSnapshots: true
+    });
+    const orderRef = db.collection("orders").add({
+      title: this.state.title,
+      price: this.state.price,
+      status: true
+  });
+  console.log(orderRef);
+    this.setState({
+      title: '',
+      price: ''
+    });
+  };
+  render() {
+    return (
     <div className="container">
         <h1>Order</h1>
-<form >
-  <div className="form-group">
-    <label for="postTitle">Title</label>
-    <input type="text" className="form-control" id="postTitle" placeholder="title of post" />
-  </div>
-  <div className="form-group">
-    <label for="details">Details</label>
-    <textarea className="form-control" rows="3" placeholder="details"></textarea>
-  </div>
-  <div className="form-group">
-    <label for="postDate">Date of post</label>
-    <input type="text" className="form-control" id="postDate" placeholder="date of post" />
-  </div>
-  <div className="form-group">
-    <label for="addressFrom">Deliver Address Map</label>
-    <textarea className="form-control" id="addressFrom" rows="5" placeholder="here will be map"></textarea>
-  </div>
-  <div className="form-group">
-    <label for="addressTo">Deliver Address Map</label>
-    <textarea className="form-control" id="addressTo" rows="5" placeholder="here will be map"></textarea>
-  </div>
-  <div className="text-right">
-  <button className="btn btn-success btn-block">Request a courier</button>
-  </div>
-</form>
+        <form onSubmit={this.addPost}>
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            onChange={this.updateInput}
+            value={this.state.title}
+          />
+          <input
+            type="number"
+            name="price"
+            placeholder="price"
+            onChange={this.updateInput}
+            value={this.state.price}
+          />
+          <button type="submit">Submit</button>
+        </form>
     </div>
   );
+    }
 }
 
 export default Order;
