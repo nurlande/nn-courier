@@ -1,34 +1,48 @@
 import React from 'react';
+import firebase from './config/config'
 
 class Register extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.changeInput = this.changeInput.bind(this);
+        this.signUp = this.signUp.bind(this);
         this.state = {
-            username: '',
-            login: '',
-            courier: false
-        }
-    }
-    changeInput = e => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
-    loginTo = e => {
-        console.log("login");
-    }
+          email: '',
+          password: ''
+        };
+      }
+    
+      changeInput = e => {
+        this.setState({ 
+            [e.target.name]: e.target.value 
+        });
+      }
+    
+      signUp = e => {
+        e.preventDefault();
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+        }).then((u)=>{console.log(u)})
+        .catch((error) => {
+            console.log(error);
+          })
+          firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+        }).catch((error) => {
+            console.log(error);
+          });
+          window.location="/";
+      }
     render() {
   return (
     <div className="container order text-center">
-        <h1>Login Page</h1>
-        <form>
+        <h1>Register</h1>
+        <form onSubmit={this.signUp}>
             <input 
                 className="input"
-                placeholder = "username"
-                name="username"
-                type="text"
+                placeholder = "email"
+                name="email"
+                type="email"
                 onChange={this.changeInput}
-                value={this.state.username}
+                value={this.state.email}
             />
             <input 
                 className="input"
@@ -38,13 +52,7 @@ class Register extends React.Component {
                 onChange={this.changeInput}
                 value={this.state.password}
             />
-            <input 
-                type="checkbox" 
-                name="courier" 
-                className="input"
-                onChange={this.changeInput}
-                value={this.state.courier} /> I'm Courier
-            <button type="submit" className="btn btn-primary btn-block">Login</button>
+            <button type="submit" className="btn btn-primary btn-block">Register</button>
         </form>
     </div>    
   );

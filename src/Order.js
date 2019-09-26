@@ -1,5 +1,7 @@
 import React from 'react';
 import firebase from './config/config.js';
+import Login from './Login';
+import {Route, Link} from 'react-router-dom';
 
 class Order extends React.Component {
   constructor() {
@@ -8,8 +10,13 @@ class Order extends React.Component {
      date: '',
      description: '',
      geoLocationFrom: '',
-     geoLocationTo: ''
+     geoLocationTo: '',
+     user: null
     };
+    this.authListener = this.authListener.bind(this);
+  }
+  componentDidMount() {
+    this.authListener();
   }
   updateInput = e => {
     this.setState({
@@ -37,9 +44,23 @@ class Order extends React.Component {
     });
     alert("The request has been allowed");
   };
+  authListener() {
+    firebase.auth().onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        this.setState({ user });
+        localStorage.setItem('user', user.uid);
+      } else {
+        this.setState({ user: null });
+        localStorage.removeItem('user');
+      }
+    });
+  }
   render() {
     return (
     <div className="container order text-center">
+        {this.state.user ? (
+        <div>
         <h1>Order</h1>
         <form onSubmit={this.addPost}
               className="form"
@@ -83,9 +104,14 @@ class Order extends React.Component {
                   className="btn btn-success btn-block"
           >Submit</button>
         </form>
+        </div>
+        ) : (
+          <Link to="/login" className="btn btn-primary btn-lg choose">Go to Login</Link>
+        )}
+        <Route path="/login" component={Login}/>
     </div>
-  );
-    }
+    );
+  }
 }
 
 export default Order;

@@ -1,21 +1,39 @@
 import React from 'react';
 import firebase from 'firebase';
+import {Route, Link} from 'react-router-dom';
+import Login from './Login'
 
 class Orderlist extends React.Component {
     constructor() {
         super();
         this.state = {
-            orders: []
+            orders: [],
+            user: null
         };
+        this.authListener = this.authListener.bind(this);
       }
       componentDidMount() {
+        this.authListener();
         const db = firebase.firestore();
         db.collection("orders").get().then(querySnapshot => {
         const data = querySnapshot.docs.map(doc => doc.data());
-        this.setState({
-            orders: data
-        })
-    });
+            this.setState({
+                orders: data
+            })
+        });
+        
+      }
+      authListener() {
+        firebase.auth().onAuthStateChanged((user) => {
+          console.log(user);
+          if (user) {
+            this.setState({ user });
+            localStorage.setItem('user', user.uid);
+          } else {
+            this.setState({ user: null });
+            localStorage.removeItem('user');
+          }
+        });
       }
       changeStatus = () => {
           console.log(this.state.orders);
@@ -34,11 +52,16 @@ class Orderlist extends React.Component {
             <button className="btn btn-primary btn-lg" onClick={this.changeStatus}>End process</button>
             </div>);
   return (
-    <div>
+    <div className="container text-center">
+        {this.state.user ? (
         <div className="container">
         <h1>Orderlist</h1>
             {listItems}
         </div>
+        ) : (
+        <Link to="/login" className="btn btn-primary btn-lg choose">Go to Login</Link>
+        )}
+        <Route path="/login" component={Login}/>
     </div>
   );
     }
