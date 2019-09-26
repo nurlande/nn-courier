@@ -5,8 +5,10 @@ class Order extends React.Component {
   constructor() {
     super();
     this.state = {
-     title: '',
-     price: ''
+     date: '',
+     description: '',
+     geoLocationFrom: '',
+     geoLocationTo: ''
     };
   }
   updateInput = e => {
@@ -20,37 +22,66 @@ class Order extends React.Component {
     db.settings({
       timestampsInSnapshots: true
     });
-    const orderRef = db.collection("orders").add({
-      title: this.state.title,
-      price: this.state.price,
+    db.collection("orders").add({
+      date: this.state.date,
+      description: this.state.description,
+      geoLocationFrom: this.state.geoLocationFrom,
+      geoLocationTo: this.state.geoLocationTo,
       status: true
   });
-  console.log(orderRef);
     this.setState({
-      title: '',
-      price: ''
+      date: '',
+      description: '',
+      geoLocationFrom: '',
+      geoLocationTo: ''
     });
+    alert("The request has been allowed");
   };
   render() {
     return (
-    <div className="container">
+    <div className="container order text-center">
         <h1>Order</h1>
-        <form onSubmit={this.addPost}>
+        <form onSubmit={this.addPost}
+              className="form"
+              >
           <input
             type="text"
-            name="title"
-            placeholder="Title"
+            name="date"
+            placeholder="Дата"
             onChange={this.updateInput}
-            value={this.state.title}
+            value={this.state.date}
+            className="input"
           />
+          <br />
           <input
-            type="number"
-            name="price"
-            placeholder="price"
+            type="text"
+            name="description"
+            placeholder="Description"
             onChange={this.updateInput}
-            value={this.state.price}
+            value={this.state.description}
+            className="input"
           />
-          <button type="submit">Submit</button>
+          <br />
+          <input
+            type="text"
+            name="geoLocationFrom"
+            placeholder="From"
+            onChange={this.updateInput}
+            value={this.state.geoLocationFrom}
+            className="input"
+          />
+                    <input
+            type="text"
+            name="geoLocationTo"
+            placeholder="To"
+            onChange={this.updateInput}
+            value={this.state.geoLocationTo}
+            className="input"
+          />
+          <br />
+          <button type="submit"
+                  className="btn btn-success btn-block"
+          >Submit</button>
         </form>
     </div>
   );

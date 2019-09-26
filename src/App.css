@@ -1,3 +1,26 @@
-.row{
-  margin-top: 40vh;
+.navbar {
+    border-bottom: Solid 1px Gray;
+}
+.nav-item {
+    font-size: 20px;
+}
+.order {
+    padding-left: 20%;
+    padding-right: 20%;
+}
+.input {
+    margin-bottom: 10px;
+    width: 100%;
+}
+.form {
+    display: block;
+    justify-content: cemter;
+}
+.jumbatron {
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.choose {
+    margin-top: 30vh;
 }

@@ -6,6 +6,8 @@ import './index.css';
 import Header from './Header';
 import Order from './Order';
 import Orderlist from './Orderlist';
+import Login from './Login';
+import Register from './Register';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
@@ -28,6 +30,8 @@ const routing = (
         <Route exact path="/" component={App} />
         <Route path="/order" component={Order} />
         <Route path="/orderlist" component={Orderlist} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
       </div>
     </Router>
   )
