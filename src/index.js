@@ -18,9 +18,6 @@ const routing = (
           <Header />
         <ul className="navbar container">
           <li>
-            <Link className="nav-item" to="/">Home</Link>
-          </li>
-          <li>
             <Link className="nav-item" to="/order">Order</Link>
           </li>
           <li>

@@ -49,7 +49,7 @@ class Orderlist extends React.Component {
             <p>{order.description}</p> 
             <p>GeoLocation from {order.geoLocationFrom}, to {order.geoLocationTo}</p>
             <p>{this.checkStatus(order.status)}</p>
-            <button className="btn btn-primary btn-lg" onClick={this.changeStatus}>End process</button>
+            <button className="btn btn-success btn-lg" onClick={this.changeStatus}>End process</button>
             </div>);
   return (
     <div className="container text-center">

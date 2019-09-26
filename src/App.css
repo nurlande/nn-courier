@@ -1,3 +1,8 @@
+.header {
+    font-size: 28px;
+    color: white;
+    font-weight: 900;
+}
 .navbar {
     border-bottom: Solid 1px Gray;
 }
