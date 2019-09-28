@@ -18,12 +18,12 @@ class Order extends React.Component {
   componentDidMount() {
     this.authListener();
   }
-  updateInput = e => {
+  updateInput = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
-  addPost = e => {
+  addPost = (e) => {
     e.preventDefault();
     const db = firebase.firestore();
     db.settings({
@@ -58,9 +58,9 @@ class Order extends React.Component {
   }
   render() {
     return (
-    <div className="container order text-center">
+    <div className="text-center">
         {this.state.user ? (
-        <div>
+        <div className="order">
         <h1>Order</h1>
         <form onSubmit={this.addPost}
               className="form"
@@ -100,9 +100,8 @@ class Order extends React.Component {
             className="input"
           />
           <br />
-          <button type="submit"
-                  className="btn btn-success btn-block"
-          >Submit</button>
+        <br />
+          <button type="submit" className="btn btn-success btn-block">Submit</button>
         </form>
         </div>
         ) : (

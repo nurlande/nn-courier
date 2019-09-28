@@ -14,14 +14,20 @@ class Orderlist extends React.Component {
       }
       componentDidMount() {
         this.authListener();
+        this.getData();
+      }
+      getData() {
         const db = firebase.firestore();
         db.collection("orders").get().then(querySnapshot => {
-        const data = querySnapshot.docs.map(doc => doc.data());
+        const data = querySnapshot.docs.map(doc => {
+            const dats = doc.data()
+            return {id: doc.id, ...dats}
+        });
+        console.log(data);
             this.setState({
                 orders: data
             })
         });
-        
       }
       authListener() {
         firebase.auth().onAuthStateChanged((user) => {
@@ -35,21 +41,31 @@ class Orderlist extends React.Component {
           }
         });
       }
-      changeStatus = () => {
-          console.log(this.state.orders);
-      }
-      checkStatus = (status) => {
-          return (status ? "open" : "closed");
+      changeStatus (id) {
+        let db = firebase.firestore();
+        db.collection("orders").doc(id).update({
+            status: false
+        })
+        .then(function() {
+            console.log("Document successfully updated!");
+        })
+        .catch(function(error) {
+            console.error("Error updating document: ", error);
+        });
+        this.getData();
       }
     render() 
     {
         const listItems = this.state.orders.map(
-            (order) => <div key={order.date} className="jumbatron bg-info">
+            (order) => <div key={order.id} className="jumbatron bg-info">
             <h4>{order.date}</h4>
             <p>{order.description}</p> 
             <p>GeoLocation from {order.geoLocationFrom}, to {order.geoLocationTo}</p>
-            <p>{this.checkStatus(order.status)}</p>
-            <button className="btn btn-success btn-lg" onClick={this.changeStatus}>End process</button>
+            <p>{order.status ? "Availible" : "Closed"}</p>
+            <div> {order.status && (
+            <button className="btn btn-success btn-lg" onClick={this.changeStatus.bind(this,order.id)}>End process</button>
+            )}
+            </div>
             </div>);
   return (
     <div className="container text-center">

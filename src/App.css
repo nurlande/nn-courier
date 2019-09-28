@@ -19,7 +19,9 @@
 }
 .form {
     display: block;
-    justify-content: cemter;
+    align-content: center;
+    margin: auto;
+    width: 80%;
 }
 .jumbatron {
     padding: 20px;
@@ -29,4 +31,12 @@
 }
 .choose {
     margin-top: 30vh;
+}
+.map {
+    width: 100px;
+}
+@media only screen and (max-width: 600px) {
+    .order {
+        padding: 10px;
+    }
 }

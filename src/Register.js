@@ -1,40 +1,45 @@
 import React from 'react';
-import firebase from './config/config'
+import firebase from './config/config';
+import {Link, Route} from 'react-router-dom';
+import Login from './Login';
 
 class Register extends React.Component {
     constructor(props) {
         super(props);
-        this.changeInput = this.changeInput.bind(this);
-        this.signUp = this.signUp.bind(this);
         this.state = {
           email: '',
-          password: ''
+          password: '',
+          signed: false
         };
+        this.changeInput = this.changeInput.bind(this);
+        this.signUp = this.signUp.bind(this);
       }
     
-      changeInput = e => {
+      changeInput = (e) => {
         this.setState({ 
             [e.target.name]: e.target.value 
         });
       }
     
-      signUp = e => {
+      signUp = (e) => {
         e.preventDefault();
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-        }).then((u)=>{console.log(u)})
+        }).then((u)=>{this.setState({
+          signed: true
+        })})
         .catch((error) => {
             console.log(error);
-          })
-          firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-        }).catch((error) => {
-            console.log(error);
+            alert("Something is wrong, Try again");
           });
-          window.location="/";
       }
     render() {
   return (
     <div className="container order text-center">
         <h1>Register</h1>
+      {this.state.signed ? (
+      <div><h1>Successfully Signed Up</h1>
+      <Link to='/login' className="btn btn-primary btn block">Login Now</Link></div>
+      ) : (
         <form onSubmit={this.signUp}>
             <input 
                 className="input"
@@ -54,6 +59,8 @@ class Register extends React.Component {
             />
             <button type="submit" className="btn btn-primary btn-block">Register</button>
         </form>
+        )}
+                <Route path="/login" component={Login}/>
     </div>    
   );
     }
