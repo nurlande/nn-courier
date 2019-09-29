@@ -9,6 +9,7 @@ import Orderlist from './Orderlist';
 import Login from './Login';
 import Register from './Register';
 import Success from './Success';
+import Footer from './Footer';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
@@ -25,12 +26,15 @@ const routing = (
             <Link  className="nav-item" to="/orderlist">Заказы</Link>
           </li>
         </ul>
+        <div className="routes">
         <Route exact path="/" component={App} />
         <Route path="/order" component={Order} />
         <Route path="/orderlist" component={Orderlist} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/success" component={Success} />
+        </div>
+        <Footer />
       </div>
     </Router>
   )

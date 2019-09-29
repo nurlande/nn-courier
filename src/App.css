@@ -29,6 +29,12 @@
     margin-bottom: 10px;
     text-align: left;
 }
+.page-footer {
+    margin-top: 20px;
+}
+.foot-link {
+    color: white;
+}
 .choose {
     margin-top: 30vh;
 }

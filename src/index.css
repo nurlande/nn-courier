@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(186, 186, 233);
+  background-color:LightSkyBlue;
 }
 .navbar {
   list-style: none;
@@ -10,4 +10,7 @@ body {
   margin: 0 25px;
   color: Black;
   font-size: 25px;
+}
+.routes {
+  min-height: 75vh;
 }

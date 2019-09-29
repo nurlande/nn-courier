@@ -9,7 +9,7 @@ function App() {
     <div className="container text-center">
       <div className="row">
       <div className="col-6 text-right">
-      <Link to="/order" className="btn btn-primary btn-lg choose">Вызвать Курьера</Link>
+      <Link to="/order" className="btn btn-primary btn-lg choose">Вызвать курьера</Link>
       </div>
       <div className="col-6 text-left">
       <Link to="/orderlist" className="btn btn-primary btn-lg choose">Список заказов</Link>
