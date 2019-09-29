@@ -38,7 +38,7 @@ class Header extends React.Component {
       <nav className="navbar navbar-light bg-primary">
       <div className="container"><a className="navbar-brand" href="/">
       <h4 className="header">NN-COURIER</h4> </a>
-      <button className="btn btn-light" onClick={this.state.user ? this.logout : this.login}> {this.state.user ? "Logout" : "Login"}</button>
+      <button className="btn btn-light" onClick={this.state.user ? this.logout : this.login}> {this.state.user ? "Выйти" : "Войти"}</button>
       </div>
       </nav>
       </div>

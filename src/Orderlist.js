@@ -1,7 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
 import {Route, Link} from 'react-router-dom';
-import Login from './Login'
+import Login from './Login';
 
 class Orderlist extends React.Component {
     constructor() {
@@ -57,25 +57,26 @@ class Orderlist extends React.Component {
     render() 
     {
         const listItems = this.state.orders.map(
-            (order) => <div key={order.id} className="jumbatron bg-info">
-            <h4>{order.date}</h4>
-            <p>{order.description}</p> 
-            <p>GeoLocation from {order.geoLocationFrom}, to {order.geoLocationTo}</p>
-            <p>{order.status ? "Availible" : "Closed"}</p>
+            (order) => <div key={order.id} className="jumbatron bg-light">
+            <h4><b>Дата: </b>{order.date }</h4>
+            <p><b>Описание: </b><i>{order.description}</i></p> 
+            <p><b>Статус Заказа:</b> <u>{order.status ? "Доступен" : "Завершено"}</u></p>
             <div> {order.status && (
-            <button className="btn btn-success btn-lg" onClick={this.changeStatus.bind(this,order.id)}>End process</button>
+            <button className="btn btn-primary" onClick={this.changeStatus.bind(this,order.id)}>Завершить</button>
             )}
             </div>
+            <label><b>Точки отправки и доставки: </b></label>
+            <div>Map Area</div>
             </div>);
   return (
     <div className="container text-center">
         {this.state.user ? (
         <div className="container">
-        <h1>Orderlist</h1>
+        <h1>Заказы</h1>
             {listItems}
         </div>
         ) : (
-        <Link to="/login" className="btn btn-primary btn-lg choose">Go to Login</Link>
+        <Link to="/login" className="btn btn-primary btn-lg choose">Перейти к логин</Link>
         )}
         <Route path="/login" component={Login}/>
     </div>

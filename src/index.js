@@ -8,6 +8,7 @@ import Order from './Order';
 import Orderlist from './Orderlist';
 import Login from './Login';
 import Register from './Register';
+import Success from './Success';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
@@ -18,10 +19,10 @@ const routing = (
           <Header />
         <ul className="navbar container">
           <li>
-            <Link className="nav-item" to="/order">Order</Link>
+            <Link className="nav-item" to="/order">Вызов</Link>
           </li>
           <li>
-            <Link  className="nav-item" to="/orderlist">Orderlist</Link>
+            <Link  className="nav-item" to="/orderlist">Заказы</Link>
           </li>
         </ul>
         <Route exact path="/" component={App} />
@@ -29,6 +30,7 @@ const routing = (
         <Route path="/orderlist" component={Orderlist} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/success" component={Success} />
       </div>
     </Router>
   )

@@ -37,8 +37,9 @@ class Login extends React.Component {
     render() {
   return (
     <div className="container order text-center">
-        <h1>Login Page</h1>
-        <form onSubmit={this.login}>
+        <h1>Войти</h1>
+        <form onSubmit={this.login} className="text-left">
+            <label>Электронный адрес</label>
             <input 
                 className="input"
                 placeholder = "email"
@@ -47,6 +48,7 @@ class Login extends React.Component {
                 onChange={this.changeInput}
                 value={this.state.email}
             />
+            <label>Пароль</label>
             <input 
                 className="input"
                 placeholder = "password"
@@ -55,8 +57,8 @@ class Login extends React.Component {
                 onChange={this.changeInput}
                 value={this.state.password}
             />
-            <button type="submit" className="btn btn-primary btn-block">Login</button>
-            <Link to="/register" className="btn btn-success btn-block">Go To Register</Link>
+            <button type="submit" className="btn btn-primary btn-block">Войти</button>
+            <Link to="/register" className="btn btn-success btn-block">Перейти к регистрацию</Link>
         </form>
         <Route path="/register" component={Register} />
     </div>    

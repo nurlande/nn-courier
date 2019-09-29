@@ -9,10 +9,10 @@ function App() {
     <div className="container text-center">
       <div className="row">
       <div className="col-6 text-right">
-      <Link to="/order" className="btn btn-primary btn-lg choose">I'm Client</Link>
+      <Link to="/order" className="btn btn-primary btn-lg choose">Вызвать Курьера</Link>
       </div>
       <div className="col-6 text-left">
-      <Link to="/orderlist" className="btn btn-primary btn-lg choose">I'm Courier</Link>
+      <Link to="/orderlist" className="btn btn-primary btn-lg choose">Список заказов</Link>
       </div>
       </div>
       <Route path="/order" component={Order}/>

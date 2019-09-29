@@ -1,7 +1,5 @@
 import React from 'react';
 import firebase from './config/config';
-import {Link, Route} from 'react-router-dom';
-import Login from './Login';
 
 class Register extends React.Component {
     constructor(props) {
@@ -24,10 +22,15 @@ class Register extends React.Component {
       signUp = (e) => {
         e.preventDefault();
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-        }).then((u)=>{this.setState({
-          signed: true
-        })})
-        .catch((error) => {
+        }).then((u)=>{
+          firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+            firebase.auth().onAuthStateChanged(user => {
+              if(user) {
+                window.location = '/';
+              }
+            });
+          })
+        }).catch((error) => {
             console.log(error);
             alert("Something is wrong, Try again");
           });
@@ -35,12 +38,9 @@ class Register extends React.Component {
     render() {
   return (
     <div className="container order text-center">
-        <h1>Register</h1>
-      {this.state.signed ? (
-      <div><h1>Successfully Signed Up</h1>
-      <Link to='/login' className="btn btn-primary btn block">Login Now</Link></div>
-      ) : (
-        <form onSubmit={this.signUp}>
+        <h1>Регистрация</h1>
+        <form onSubmit={this.signUp} className="text-left">
+            <label>Электронный адрес</label>
             <input 
                 className="input"
                 placeholder = "email"
@@ -49,6 +49,7 @@ class Register extends React.Component {
                 onChange={this.changeInput}
                 value={this.state.email}
             />
+            <label>Пароль</label>
             <input 
                 className="input"
                 placeholder = "password"
@@ -57,10 +58,8 @@ class Register extends React.Component {
                 onChange={this.changeInput}
                 value={this.state.password}
             />
-            <button type="submit" className="btn btn-primary btn-block">Register</button>
+            <button type="submit" className="btn btn-primary btn-block">Зарегистрироваться</button>
         </form>
-        )}
-                <Route path="/login" component={Login}/>
     </div>    
   );
     }
