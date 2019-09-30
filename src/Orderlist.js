@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from 'firebase';
 import {Route, Link} from 'react-router-dom';
 import Login from './Login';
+import Showmap from './Showmap';
 
 class Orderlist extends React.Component {
     constructor() {
@@ -57,7 +58,8 @@ class Orderlist extends React.Component {
     render() 
     {
         const listItems = this.state.orders.map(
-            (order) => <div key={order.id} className="jumbatron bg-light">
+            (order) => <div key={order.id} className="jumbatron row bg-light">
+              <div className="col-md-4">
             <h4><b>Дата: </b>{order.date }</h4>
             <p><b>Описание: </b><i>{order.description}</i></p> 
             <p><b>Статус Заказа:</b> <u>{order.status ? "Доступен" : "Завершено"}</u></p>
@@ -65,8 +67,19 @@ class Orderlist extends React.Component {
             <button className="btn btn-primary" onClick={this.changeStatus.bind(this,order.id)}>Завершить</button>
             )}
             </div>
-            <label><b>Точки отправки и доставки: </b></label>
-            <div>Map Area</div>
+            </div>
+            <div className="col-md-8">
+            <label className="label"><b>Точки отправки: </b>  "A"</label>
+            <label className="label"><b>Точка доставки: </b>  "B" </label>
+            <div className="here-map">
+            <Showmap center={{ lat: 42.882004, lng: 74.582748}} zoom={12}
+            latTo={order.latTo}
+            lngTo={order.lngTo}
+            latFrom={order.latFrom}
+            lngFrom={order.lngFrom}
+            />
+            </div>
+            </div>
             </div>);
   return (
     <div className="container text-center">

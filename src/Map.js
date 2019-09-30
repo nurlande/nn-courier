@@ -11,7 +11,7 @@ const MarkersList = props => {
             key={i}
             {...markerProps}
             position={{ lat: location.lat(), lng: location.lng() }}
-            
+            label={i===0 ? "A" : "B"}
           />
         );
       })}
@@ -30,12 +30,21 @@ class MapContainer extends React.Component {
 
   handleMapClick = (ref, map, ev) => {
     const location = ev.latLng;
-    if (this.state.locations.length < 2) {
-    this.setState(prevState => ({
-      locations: [...prevState.locations, location]
-    }))
-    this.props.updateFromCoors(location);
-  }};
+    switch (this.state.locations.length) {
+        case 0:
+            this.setState(prevState => ({
+            locations: [...prevState.locations, location]
+            }))
+            this.props.updateFromCoors(location);
+            break;
+        case 1:
+            this.setState(prevState => ({
+            locations: [...prevState.locations, location]
+            }))
+            this.props.updateToCoors(location);
+            break;
+        default:
+    }};
   resetMarkers = (e) => {
       e.preventDefault();
       this.setState ({
@@ -46,16 +55,18 @@ class MapContainer extends React.Component {
 
   render() {
     return (
-        <div>
-            <button onClick={this.resetMarkers}>Reset Markers</button>
+        <div className="text-right">
+            <button onClick={this.resetMarkers} className="btn btn-danger reset">Убрать флажки</button>
         <Map
           google={this.props.google}
           zoom={this.props.zoom}
           style={{width: '100%', height: '300px'}}
           initialCenter={this.props.center}
+          mapTypeControl = {false}
+          streetViewControl = {false}
           onClick={this.handleMapClick}
         >
-         <MarkersList locations={this.state.locations} />
+         <MarkersList locations={this.state.locations}/>
         </Map>
         </div>
     );

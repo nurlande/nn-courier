@@ -44,7 +44,13 @@
 .here-map > div > div > div {
     position: relative !important;
 }
-
+.label {
+    margin-right: 25px;
+    font-size: 20px;
+}
+.reset {
+    margin: 5px;
+}
 @media only screen and (max-width: 600px) {
     .order {
         padding: 10px;
