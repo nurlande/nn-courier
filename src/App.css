@@ -2,6 +2,7 @@
     font-size: 28px;
     color: white;
     font-weight: 900;
+    background-color: navy;
 }
 .navbar {
     border-bottom: Solid 1px Gray;
@@ -15,22 +16,30 @@
 }
 .input {
     margin-bottom: 10px;
-    width: 100%;
+    width: 80%;
+    border: solid 1px Gray;
+    border-radius: 5px;
+    background: transparent;
 }
 .form {
     display: block;
     align-content: center;
     margin: auto;
-    width: 80%;
+    width: 100%;
+    padding: 20px;
+    background-color: whitesmoke;
+    border-radius: 5px;
 }
 .jumbatron {
     padding: 20px;
     border-radius: 5px;
     margin-bottom: 10px;
     text-align: left;
+    background-color: whitesmoke;
 }
 .page-footer {
     margin-top: 20px;
+    background-color: navy;
 }
 .foot-link {
     color: white;

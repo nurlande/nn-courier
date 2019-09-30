@@ -35,7 +35,7 @@ class Header extends React.Component {
   render() {
     return (
       <div>
-      <nav className="navbar navbar-light bg-primary">
+      <nav className="navbar navbar-light header">
       <div className="container"><a className="navbar-brand" href="/">
       <h4 className="header">NN-COURIER</h4> </a>
       <button className="btn btn-light" onClick={this.state.user ? this.logout : this.login}> {this.state.user ? "Выйти" : "Войти"}</button>
