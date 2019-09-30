@@ -38,9 +38,13 @@
 .choose {
     margin-top: 30vh;
 }
-.map {
-    width: 100px;
+.here-map > div > div > div > div{
+    position: relative !important;
 }
+.here-map > div > div > div {
+    position: relative !important;
+}
+
 @media only screen and (max-width: 600px) {
     .order {
         padding: 10px;
