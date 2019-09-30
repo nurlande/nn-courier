@@ -6,10 +6,10 @@ import Showmap from './Showmap';
 
 class Orderlist extends React.Component {
     constructor() {
-        super();
-        this.state = {
-            orders: [],
-            user: null
+      super();
+      this.state = {
+          orders: [],
+          user: null
         };
         this.authListener = this.authListener.bind(this);
       }
@@ -60,34 +60,34 @@ class Orderlist extends React.Component {
         const listItems = this.state.orders.map(
             (order) => <div key={order.id} className="jumbatron row">
             <div className="col-md-8">
-            <label className="label"><b>Точки отправки: </b>  "A"</label>
-            <label className="label"><b>Точка доставки: </b>  "B" </label>
-            <div className="here-map">
-            <Showmap center={{ lat: 42.882004, lng: 74.582748}} zoom={10}
-            latTo={order.latTo}
-            lngTo={order.lngTo}
-            latFrom={order.latFrom}
-            lngFrom={order.lngFrom}
-            />
+              <label className="label"><b>Точки отправки: </b>  "A"</label>
+              <label className="label"><b>Точка доставки: </b>  "B" </label>
+              <div className="here-map">
+                <Showmap center={{ lat: 42.882004, lng: 74.582748}} zoom={10}
+                          latTo={order.latTo}
+                          lngTo={order.lngTo}
+                          latFrom={order.latFrom}
+                          lngFrom={order.lngFrom}
+                />
+              </div>
             </div>
-            </div>
-              <div className="col-md-4">
-            <h5><b>Дата: </b>{order.date }</h5>
-            <br />
-            <p><b>Описание: </b><i>{order.description}</i></p> 
-            <p><b>Статус Заказа:</b> <u>{order.status ? "Доступен" : "Завершено"}</u></p>
-            <div className="text-right"> {order.status && (
-            <button className="btn btn-primary" onClick={this.changeStatus.bind(this,order.id)}>Завершить</button>
-            )}
-            </div>
+            <div className="col-md-4">
+              <h5><b>Дата: </b>{order.date }</h5>
+              <br />
+              <p><b>Описание: </b><i>{order.description}</i></p> 
+              <p><b>Статус Заказа:</b> <u>{order.status ? "Доступен" : "Завершено"}</u></p>
+              <div className="text-right"> {order.status && (
+                <button className="btn btn-primary" onClick={this.changeStatus.bind(this,order.id)}>Завершить</button>
+                )}
+              </div>
             </div>
 
-            </div>);
+          </div>);
   return (
     <div className="container text-center">
         {this.state.user ? (
         <div className="container">
-        <h1>Заказы</h1>
+          <h1>Заказы</h1>
             {listItems}
         </div>
         ) : (

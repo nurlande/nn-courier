@@ -20,7 +20,7 @@ const routing = (
           <Header />
         <ul className="navbar container">
           <li>
-            <Link className="nav-item" to="/order">Вызов</Link>
+            <Link className="nav-item" to="/order">Вызов курьера</Link>
           </li>
           <li>
             <Link  className="nav-item" to="/orderlist">Заказы</Link>
