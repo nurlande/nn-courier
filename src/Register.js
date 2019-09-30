@@ -37,9 +37,9 @@ class Register extends React.Component {
       }
     render() {
   return (
-    <div className="container order text-center">
+    <div className="container text-center reg-log-card">
         <h1>Регистрация</h1>
-        <form onSubmit={this.signUp} className="text-left">
+        <form onSubmit={this.signUp} className="text-left form">
             <label>Электронный адрес</label>
             <input 
                 className="input"

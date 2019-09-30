@@ -63,7 +63,7 @@ class Orderlist extends React.Component {
             <label className="label"><b>Точки отправки: </b>  "A"</label>
             <label className="label"><b>Точка доставки: </b>  "B" </label>
             <div className="here-map">
-            <Showmap center={{ lat: 42.882004, lng: 74.582748}} zoom={12}
+            <Showmap center={{ lat: 42.882004, lng: 74.582748}} zoom={10}
             latTo={order.latTo}
             lngTo={order.lngTo}
             latFrom={order.latFrom}

@@ -16,7 +16,7 @@
 }
 .input {
     margin-bottom: 10px;
-    width: 80%;
+    width: 100%;
     border: solid 1px Gray;
     border-radius: 5px;
     background: transparent;
@@ -29,6 +29,11 @@
     padding: 20px;
     background-color: whitesmoke;
     border-radius: 5px;
+}
+.reg-log-card {
+    margin: auto;
+    padding: 10%;
+    padding-top: 5%; 
 }
 .jumbatron {
     padding: 20px;

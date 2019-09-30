@@ -156,7 +156,7 @@ class Order extends React.Component {
           <br />
           <label><b>Виберите точки отправки и доставки на карте: </b><i>А и B</i></label>
           <div className="here-map">
-          <Map center={{ lat: 42.882004, lng: 74.582748}} zoom={12}
+          <Map center={{ lat: 42.882004, lng: 74.582748}} zoom={10}
             updateFromCoors={this.updateFromCoors}
             updateToCoors={this.updateToCoors}
             resetCoors={this.resetCoors}
