@@ -133,7 +133,7 @@ class Order extends React.Component {
         <h1>Вызов курьера</h1>
         <form onSubmit={this.addPost} className="form text-left">
           <div>
-            <label>Дата Отправки:</label>
+            <label><b>Дата Отправки:</b></label> <br />
           <input
             type="date"
             name="date"
@@ -143,8 +143,7 @@ class Order extends React.Component {
             className="input"
           />
           </div>
-          <br />
-          <label>Описание:</label>
+          <label><b>Описание посылки:</b></label> <br />
           <input
             type="text"
             name="description"
@@ -154,7 +153,8 @@ class Order extends React.Component {
             className="input"
           />
           <br />
-          <label>Виберите точки отправки и доставки на карте: <b>А и B</b></label>
+          <br />
+          <label><b>Виберите точки отправки и доставки на карте: </b><i>А и B</i></label>
           <div className="here-map">
           <Map center={{ lat: 42.882004, lng: 74.582748}} zoom={12}
             updateFromCoors={this.updateFromCoors}
@@ -171,7 +171,7 @@ class Order extends React.Component {
           /> */}
           </div>
           <br />
-          <button type="submit" className="btn btn-success btn-block">Submit</button>
+          <button type="submit" className="btn btn-primary btn-block">Submit</button>
         </form>
         </div>
         ) : (

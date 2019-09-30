@@ -58,16 +58,7 @@ class Orderlist extends React.Component {
     render() 
     {
         const listItems = this.state.orders.map(
-            (order) => <div key={order.id} className="jumbatron row bg-light">
-              <div className="col-md-4">
-            <h4><b>Дата: </b>{order.date }</h4>
-            <p><b>Описание: </b><i>{order.description}</i></p> 
-            <p><b>Статус Заказа:</b> <u>{order.status ? "Доступен" : "Завершено"}</u></p>
-            <div> {order.status && (
-            <button className="btn btn-primary" onClick={this.changeStatus.bind(this,order.id)}>Завершить</button>
-            )}
-            </div>
-            </div>
+            (order) => <div key={order.id} className="jumbatron row">
             <div className="col-md-8">
             <label className="label"><b>Точки отправки: </b>  "A"</label>
             <label className="label"><b>Точка доставки: </b>  "B" </label>
@@ -80,6 +71,17 @@ class Orderlist extends React.Component {
             />
             </div>
             </div>
+              <div className="col-md-4">
+            <h5><b>Дата: </b>{order.date }</h5>
+            <br />
+            <p><b>Описание: </b><i>{order.description}</i></p> 
+            <p><b>Статус Заказа:</b> <u>{order.status ? "Доступен" : "Завершено"}</u></p>
+            <div className="text-right"> {order.status && (
+            <button className="btn btn-primary" onClick={this.changeStatus.bind(this,order.id)}>Завершить</button>
+            )}
+            </div>
+            </div>
+
             </div>);
   return (
     <div className="container text-center">
