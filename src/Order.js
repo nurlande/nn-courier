@@ -43,7 +43,9 @@ class Order extends React.Component {
      user: null,
      isMarkerShown: false,
      latFrom: null,
-     lngFrom: null
+     lngFrom: null,
+     latTo: null,
+     lngTo: null
     };
     this.authListener = this.authListener.bind(this);
   }
@@ -73,14 +75,32 @@ class Order extends React.Component {
     });
     console.log(this.state.latFrom + '.' + this.state.lngFrom);
   }
+  updateToCoors = (coord) => {
+    this.setState({
+      latTo: coord.lat(),
+      lngTo: coord.lng()
+    });
+    console.log(this.state.latTo + '.' + this.state.lngTo);
+  }
+  resetCoors = () => {
+    this.setState({
+      latFrom: null,
+      lngFrom: null,
+      latTo: null,
+      lngTo: null
+    })
+  }
   addPost = (e) => {
     e.preventDefault();
     const db = firebase.firestore();
+    if(this.state.latFrom){
     db.collection("orders").add({
       date: this.state.date,
       description: this.state.description,
       latFrom: this.state.latFrom,
       lngFrom: this.state.lngFrom,
+      latTo: this.state.latTo,
+      lngTo: this.state.lngTo,
       status: true
   }).then(() => {
     this.setState({
@@ -88,7 +108,10 @@ class Order extends React.Component {
     description: '',
      });
      window.location="/success"
-    })
+    })}
+    else {
+      alert("Необходимо указать точки на карте !!!")
+    }
   };
   authListener() {
     firebase.auth().onAuthStateChanged((user) => {
@@ -131,10 +154,12 @@ class Order extends React.Component {
             className="input"
           />
           <br />
-          <label>Точки отправки и доставки:</label>
+          <label>Виберите точки отправки и доставки на карте: <b>А и B</b></label>
           <div className="here-map">
           <Map center={{ lat: 42.882004, lng: 74.582748}} zoom={12}
             updateFromCoors={this.updateFromCoors}
+            updateToCoors={this.updateToCoors}
+            resetCoors={this.resetCoors}
           />
           {/* <MyMapComponent
             isMarkerShown={this.state.isMarkerShown}
